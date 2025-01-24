@@ -24,6 +24,18 @@ try:
     print("Failed to receive parameter tree")
   parameter_tree.load(param_tree_reply_msg)
 
+  # Gripper control test
+  get_param_reply_msg = req.getParameter('root/UserParameters/IO/Gripper').get()
+  print("nget_param_reply_msg:")
+  print(get_param_reply_msg)
+
+  set_param_reply_msg = req.setParameter('root/UserParameters/IO/Gripper',
+  True).get()
+  print("nset_param_reply_msg:")
+  print(set_param_reply_msg)
+  
+  # Close connection for fresh restart
+  req.close()
 
 except RuntimeError as err:
   print(err)
